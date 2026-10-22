@@ -1,5 +1,12 @@
 <?php
+session_start();
+if (($_SESSION['role'] ?? '') !== 'admin') {
+    header('Location: login.php');
+    exit;
+}
+
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/header.php';
 requireLogin();
 
 $employeeId = (int) $_SESSION['employee_id'];
